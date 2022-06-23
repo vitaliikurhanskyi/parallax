@@ -1,4 +1,5 @@
 @charset "UTF-8";
+
 @font-face {
   font-family: ErmilovBold;
   font-display: swap;
@@ -6,6 +7,7 @@
   font-weight: 400;
   font-style: normal;
 }
+
 @font-face {
   font-family: RobotoBold;
   font-display: swap;
@@ -13,6 +15,7 @@
   font-weight: 400;
   font-style: normal;
 }
+
 @font-face {
   font-family: RobotoRegular;
   font-display: swap;
@@ -20,8 +23,11 @@
   font-weight: 400;
   font-style: normal;
 }
+
 /*----- Контейнер ----*/
+
 /*Обнуление*/
+
 * {
   padding: 0;
   margin: 0;
@@ -31,7 +37,6 @@
 *,
 *:before,
 *:after {
-  -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
@@ -112,6 +117,7 @@ h6 {
 }
 
 /*--------------------*/
+
 body {
   font-family: Arial, Helvetica, sans-serif;
   height: 100%;
@@ -151,16 +157,22 @@ body {
 
 .parallax__label {
   color: #fbd784;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   font-size: 18px;
   letter-spacing: 6px;
   margin: 0 0 30px 0;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .parallax__label::before {
   content: "";
-  flex: 0 0 70px;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 70px;
+          flex: 0 0 70px;
   margin: 0 30px 0 0;
   background-color: #fbd784;
   height: 1px;
@@ -196,28 +208,29 @@ body {
   left: 0;
 }
 
+.no-webp .images-parallax__clouds{
+  background: url("../img/clouds.jpg") top/cover no-repeat; }
+
 .images-parallax__clouds {
-  background: url("../img/clouds.jpg") top/cover no-repeat;
   top: 0;
 }
 
+.no-webp .images-parallax__mountains{
+  background: url("../img/mountains.png") top/cover no-repeat; }
+
 .images-parallax__mountains {
-  background: url("../img/mountains.png") top/cover no-repeat;
   top: 15%;
   z-index: 2;
 }
 
+.no-webp .images-parallax__human{
+  background: url("../img/human.png") top/cover no-repeat; }
+
 .images-parallax__human {
-  background: url("../img/human.png") top/cover no-repeat;
   top: 45%;
   z-index: 3;
 }
 
-@media (max-aspect-ratio: 3/2) {
-  .images-parallax__human {
-    background-position: 20% top;
-  }
-}
 .content {
   background-color: #0b1d26;
   position: relative;
@@ -231,7 +244,11 @@ body {
   left: 0;
   width: 100%;
   height: 300px;
-  transform: translate(0px, -100%);
+  -webkit-transform: translate(0px, -100%);
+      -ms-transform: translate(0px, -100%);
+          transform: translate(0px, -100%);
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(11, 29, 38, 0.1)), to(rgba(145, 152, 229, 0.1)));
+  background: -o-linear-gradient(top, rgba(11, 29, 38, 0.1), rgba(145, 152, 229, 0.1));
   background: linear-gradient(180deg, rgba(11, 29, 38, 0.1), rgba(145, 152, 229, 0.1));
   pointer-events: 0;
 }
@@ -254,17 +271,34 @@ body {
   .parallax__title {
     font-size: 50px;
   }
+
   .parallax__label {
     font-size: 16px;
     margin: 0 0 15px 0;
   }
 }
+
 @media (max-width: 479px) {
   .parallax__title {
     font-size: 36px;
   }
+
   .parallax__label::before {
-    flex: 0 0 50px;
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 50px;
+            flex: 0 0 50px;
     margin: 0 10px 0 0;
   }
 }
+
+@media (max-aspect-ratio: 3/2) {
+  .images-parallax__human {
+    background-position: 20% top;
+  }
+}
+
+.webp .images-parallax__clouds{ background: url(../img/clouds.webp) top/cover no-repeat; }
+
+.webp .images-parallax__mountains{ background: url(../img/mountains.webp) top/cover no-repeat; }
+
+.webp .images-parallax__human{ background: url(../img/human.webp) top/cover no-repeat; }

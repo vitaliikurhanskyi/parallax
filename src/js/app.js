@@ -22,8 +22,11 @@ window.onload = function () {
 		const speed = 0.05;
 
 		// Объявления переменных
-		let positionX = 0, positionY = 0;
-		let coordXprocent = 0, coordYprocent = 0;
+		let positionX = 0;
+		let positionY = 0;
+		let coordXprocent = 0;
+		let coordYprocent = 0;
+
 
 		function setMouseParallaxStyle() {
 			const distX = coordXprocent - positionX;
@@ -50,9 +53,39 @@ window.onload = function () {
 			// Вычисляем центр
 			let coordX = e.pageX - parallaxWidth / 2;
 			let coordY = e.pageY - parallaxHeight / 2;
-			//console.log(coordX);
+
+			// Получаем проценты
+			coordXprocent = coordX / parallaxWidth * 100;
+			coordYprocent = coordY / parallaxHeight * 100;
+
 		});
+
+		// Parallax при скроле
+
+		let thresholdSets = [];
+
+		for (let i = 0; i <= 1.0; i += 0.0005) {
+			thresholdSets.push(i);
+		}
+		const callback = function (events, observer) {
+			const scrollTopProcent = window.pageYOffset / parallax.offsetHeight * 100;
+			setParallaxItemsStyle(scrollTopProcent);
+		};
+		const observer = new IntersectionObserver(callback, {
+			threshold: thresholdSets
+		});
+
+		observer.observe(document.querySelector('.content'));
+
+		function setParallaxItemsStyle(scrollTopProcent) {
+			content.style.cssText = `transform: translate(0%, -${scrollTopProcent / 9}%);`;
+			mountains.parentElement.style.cssText = `transform: translate(0%, -${scrollTopProcent / 6}%);`;
+			human.parentElement.style.cssText = `transform: translate(0%, -${scrollTopProcent / 3}%);`;
+		}
+
+
 	}
 }
 
-// 300 - 1200 / 2 = 
+// 300 - 1200 / 2 = -300
+// 300 / 1200 * 100
